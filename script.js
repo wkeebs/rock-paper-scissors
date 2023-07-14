@@ -1,8 +1,8 @@
 const choices = ["Rock", "Paper", "Scissors"];
 const outcomes = {
-    LOSS : "You lose!",
-    DRAW : "It's a draw.",
-    WIN: "You win!"
+    CPU : "CPU++",
+    DRAW : "DRAW",
+    PLAYER: "PLAYER++"
 }
 
 function getComputerChoice () {
@@ -26,14 +26,33 @@ function playRound(playerChoice, computerChoice) {
     case_2 = pChoice === "paper" && cChoice === "scissors";
     case_3 = pChoice === "scissors" && cChoice === "rock";
     if (case_1 || case_2 || case_3) {
-        return outcomes.LOSS;
+        return outcomes.CPU;
     }
     else {
-        return outcomes.WIN;
+        return outcomes.PLAYER;
     }
 }
 
-const computerSelection = getComputerChoice();
-const playerSelection = getPlayerChoice();
-console.log(`${playerSelection} vs ${computerSelection}`);
-console.log(playRound(playerSelection, computerSelection));
+function game(limit) {
+    let playerCount = 0;
+    let computerCount = 0;
+    while (playerCount < limit && computerCount < 5) {
+        let playerChoice = getPlayerChoice();
+        let outcome = playRound(playerChoice, getComputerChoice());
+        if (outcome === outcomes.CPU) {
+            computerCount++;
+        }
+        else if (outcome === outcomes.PLAYER) {
+            playerCount++;
+        }
+        console.log(`PLAYER: ${playerCount} | CPU: ${computerCount}`);
+    }
+    if (playerCount >= limit) {
+        alert("You win!");
+    }
+    else {
+        alert("CPU wins :(");
+    }
+}
+
+game(5);

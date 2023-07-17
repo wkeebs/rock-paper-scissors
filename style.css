@@ -1,0 +1,33 @@
+/* * {
+    border-style: dashed;
+    border-color: red;
+} */
+
+html {
+    background-color: rgb(22, 22, 22);
+}
+
+button {
+    font-family: 'VT323', monospace;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.title-text {
+    font-family: 'VT323', monospace;
+    text-transform: uppercase;
+    color: whitesmoke;
+    font-size: 24px;
+    text-align: center;
+}
+
+.welcome {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}

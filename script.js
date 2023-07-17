@@ -33,7 +33,7 @@ function playRound(playerChoice, computerChoice) {
     }
 }
 
-function game(limit) {
+function game(limit=5) {
     let playerCount = 0;
     let computerCount = 0;
     while (playerCount < limit && computerCount < 5) {
@@ -55,4 +55,22 @@ function game(limit) {
     }
 }
 
-game(5);
+// -----> VISUAL ELEMENTS
+const enterBtn = document.querySelector("#welcome-btn");
+enterBtn.addEventListener('click', () => {
+    const welcome = document.querySelector(".toggle");
+    welcome.remove();
+    // welcome.classList.add("hidden");
+});
+
+function toggleWelcomeScreen() {
+    var elementsToToggle = document.querySelectorAll("toggle");
+
+    elementsToToggle.forEach(function(element) {
+        if (element.classList.contains("hidden")) {
+          element.classList.remove("hidden");
+        } else {
+          element.classList.add("hidden");
+        }
+      });
+}

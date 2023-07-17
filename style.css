@@ -11,9 +11,10 @@ button {
     font-family: 'VT323', monospace;
 }
 
-.hidden {
-    visibility: hidden;
+body {
+    margin: 0;
 }
+
 
 .title-text {
     font-family: 'VT323', monospace;
@@ -30,4 +31,27 @@ button {
     min-height: 100vh;
     justify-content: center;
     align-items: center;
+}
+
+.game-container {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.game .scoreboard {
+    display: flex;
+    flex-direction: row;
+}
+
+.background {
+    background-image: url('./assets/images/neon-city-blur.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.hidden {
+    display: none;
 }

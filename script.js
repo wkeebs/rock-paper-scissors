@@ -56,15 +56,8 @@ function game(limit=5) {
 }
 
 // -----> VISUAL ELEMENTS
-const enterBtn = document.querySelector("#welcome-btn");
-enterBtn.addEventListener('click', () => {
-    const welcome = document.querySelector(".toggle");
-    welcome.remove();
-    // welcome.classList.add("hidden");
-});
-
 function toggleWelcomeScreen() {
-    var elementsToToggle = document.querySelectorAll("toggle");
+    var elementsToToggle = document.querySelectorAll(".toggle");
 
     elementsToToggle.forEach(function(element) {
         if (element.classList.contains("hidden")) {
@@ -74,3 +67,7 @@ function toggleWelcomeScreen() {
         }
       });
 }
+
+const enterBtn = document.querySelector("#welcome-btn");
+enterBtn.addEventListener('click', toggleWelcomeScreen)
+

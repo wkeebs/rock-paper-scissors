@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./style.css">
     <script src="./script.js" defer></script>
 </head>
-<div class="welcome toggle">
+<div class="welcome toggle hidden">
     <div class="title-text">
         welcome to rock-paper-scissors
     </div>
@@ -15,13 +15,17 @@
         enter
     </button>
 </div>
-<div class="game-container toggle hidden">
+<div class="game-container toggle">
     <div class="scoreboard">
         <div id="player-score">
-            <progress id="player-health" value="5" max="5"></progress>
+            <div id="player-health" class="progress-bar">
+             <div class="progress-bar-fill"></div>
+            </div>
         </div>
         <div id="cpu-score">
-            <progress id="cpu-health" value="5" max="5"></progress>
+            <div id="cpu-health" class="progress-bar">
+                <div class="progress-bar-fill"></div>
+            </div>
         </div>
     </div>
     <div class="game">

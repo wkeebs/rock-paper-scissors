@@ -56,18 +56,40 @@ function game(limit=5) {
 }
 
 // -----> VISUAL ELEMENTS
-function toggleWelcomeScreen() {
-    var elementsToToggle = document.querySelectorAll(".toggle");
-
-    elementsToToggle.forEach(function(element) {
-        if (element.classList.contains("hidden")) {
-          element.classList.remove("hidden");
-        } else {
-          element.classList.add("hidden");
-        }
-      });
+function hideWelcomeScreen() {
+    var welcomeScreen = document.querySelector("#welcome");
+    const transitionEndHandler = function() {
+        welcomeScreen.classList.add("hidden");
+        welcomeScreen.removeEventListener('transitionend', transitionEndHandler);
+    }
+    welcomeScreen.style.opacity = '0';
+    welcomeScreen.addEventListener('transitionend', transitionEndHandler);
 }
 
 const enterBtn = document.querySelector("#welcome-btn");
-enterBtn.addEventListener('click', toggleWelcomeScreen)
+enterBtn.addEventListener('click', hideWelcomeScreen)
+
+let playerHealth = 5;
+let cpuHealth = 5;
+const MAX_HEALTH = 5;
+
+function updatePlayerHealth(value, max=5) {
+    const healthBarFill = document.querySelector('#player-health');
+    const percentage = (value / max) * 100;
+    healthBarFill.style.width = percentage + '%';
+}
+
+function updateCPUHealth(value, max=5) {
+    const healthBarFill = document.querySelector('#cpu-health');
+    const percentage = (value / max) * 100;
+    healthBarFill.style.width = percentage + '%';
+}
+
+function decrementPlayerHealth() {
+    updatePlayerHealth(playerHealth-1, MAX_HEALTH);
+}
+
+function decrementCPUHealth() {
+    updateCPUHealth(cpuHealth-1, MAX_HEALTH);
+}
 

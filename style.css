@@ -3,8 +3,16 @@
     border-color: red;
 } */
 
+:root {
+    --primary: #73A6AD;
+    --secondary: #4EFFEF;
+    --accent: #FFD2FC;
+    --dark: #001011;
+    --light: #FCF7F8;
+}
+
 html {
-    background-color: rgb(22, 22, 22);
+    background-color: var(--dark);
 }
 
 button {
@@ -15,22 +23,26 @@ body {
     margin: 0;
 }
 
+.rounded {
+    border-radius: 5px;
+}
 
 .title-text {
     font-family: 'VT323', monospace;
     text-transform: uppercase;
-    color: whitesmoke;
+    color: var(--light);
     font-size: 24px;
     text-align: center;
 }
 
-.welcome {
+#welcome {
     display: flex;
     flex-direction: column;
+    background-color: var(--dark);
     gap: 2vh;
-    min-height: 100vh;
     justify-content: center;
     align-items: center;
+    transition: opacity 1s ease-in-out;
 }
 
 .game-container {
@@ -38,19 +50,134 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
+    z-index: 1;
+    margin: 2vh;
+    gap: 2vh;
 }
 
-.game .scoreboard {
+.game, .scoreboard, .scoreholder {
     display: flex;
     flex-direction: row;
+    gap: 2vh;
+    border-radius: 5px;
+}
+
+.scoreboard {
+    width: 100%;
 }
 
 .background {
     background-image: url('./assets/images/neon-city-blur.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
 }
 
+.scoreholder {
+    font-family: 'VT323', monospace;
+    font-size: 12px;
+    width: 50%;
+    background-color: var(--primary);
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+}
+
+.scoreboard p {
+    width: 20%;
+    color: var(--light);
+    text-transform: uppercase;
+    text-shadow: 0 0 5px var(--dark);
+}
+
+#player-name {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+#cpu-name {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+
+}
+
+.progress-bar {
+    width: 40%;
+    height: 10px;
+    background-color: var(--light);
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 5px;
+    box-shadow: 0px 0px 2px var(--dark);
+  }
+
+.progress-bar-fill {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 0, 0, 0.75);
+    transition: width 0.1s ease-in-out;
+    margin: 1px;
+    border-radius: 2px;
+}
+
+.game {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 40vh;
+}
+
+
+#choices-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 20%;
+    background-color: #fcf7f82b;
+}
+
+.choice-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40%;
+    max-width: 40%;
+    aspect-ratio: 1;
+    padding: 7%;
+    background-color: #fcf7f85b;
+    margin: 5px;
+    transition: transform 0.2s;
+}
+
+.choice-btn:active {
+    transform: scale(0.95);
+}
+
+.full-screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.gif {
+    position: relative;
+    max-width: 20%;
+    max-height: 100%;
+    object-fit: cover;
+    padding: 2%;
+}
+
+.icon {
+    height: 100%;
+}
+
+.mirrored {
+    transform: scaleX(-1);
+}
 
 .hidden {
     display: none;

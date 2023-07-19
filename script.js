@@ -137,11 +137,15 @@ function draw() {
 
 function playerWin() {
     decrementCPUHealth();
+    playerAttack();
+    robotHurt();
     infoDisplay.textContent = "PLAYER WINS THE ROUND!";
 }
 
 function cpuWin() {
     decrementPlayerHealth();
+    robotAttack();
+    playerHurt();
     infoDisplay.textContent = "CPU WINS THE ROUND!";
 }
 
@@ -173,12 +177,18 @@ function computeResult(playerChoice, computerChoice) {
 }
 
 function gameOverPlayer() {
-    gameOverScreenText.textContent = 'YOU WIN!';
-    showGameOver();
+    robotDead();
+    setTimeout(() => {
+        gameOverScreenText.textContent = 'YOU WIN!';
+        showGameOver();
+    }, 2000);
 }
 
 function gameOverCpu() {
-    showGameOver();
+    playerDead();
+    setTimeout(() => {
+        showGameOver();
+    }, 2000);
 }
 
 function showGameOver() {
@@ -230,3 +240,52 @@ function playRound(playerChoice, cpuChoice) {
     }, 2000);
 
 }
+
+// Functions to change gifs
+const playerGif = document.querySelector('#player-box');
+const robotGif = document.querySelector('#cpu-box');
+
+function playerIdle() {
+    playerGif.src = './assets/asset-gifs/raider-idle.gif';
+}
+
+function playerAttack() {
+    playerGif.src = './assets/asset-gifs/raider-attack.gif';
+    setTimeout(() => {
+        playerIdle();
+    }, 1000);
+}
+
+function playerHurt() {
+    playerGif.src = './assets/asset-gifs/raider-hurt.gif';
+    setTimeout(() => {
+        playerIdle();
+    }, 1000);
+}
+
+function playerDead() {
+    playerGif.src = './assets/asset-gifs/raider-dead.gif';
+}
+
+function robotIdle() {
+    robotGif.src = './assets/asset-gifs/robot-idle.gif';
+}
+
+function robotAttack() {
+    robotGif.src = './assets/asset-gifs/robot-attack.gif';
+    setTimeout(() => {
+        robotIdle();
+    }, 1100);
+}
+
+function robotHurt() {
+    robotGif.src = './assets/asset-gifs/robot-hurt.gif';
+    setTimeout(() => {
+        robotIdle();
+    }, 800);
+}
+
+function robotDead() {
+    robotGif.src = './assets/asset-gifs/robot-dead.gif';
+}
+

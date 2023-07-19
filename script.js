@@ -102,6 +102,18 @@ const gameOverScreenText = document.querySelector('#game-over-text')
 const resetBtn = document.querySelector('#reset-btn');
 resetBtn.addEventListener('click', resetGame);
 
+rockBtn.addEventListener('click', () =>{
+    playRound(getPlayerChoice(1), getComputerChoice());
+})
+
+paperBtn.addEventListener('click', ()=>{
+    playRound(getPlayerChoice(2), getComputerChoice());
+})
+
+scissorsBtn.addEventListener('click', ()=>{
+    playRound(getPlayerChoice(3), getComputerChoice());
+})
+
 function disableButtons() {
     const buttons = document.querySelectorAll('.choice-btn');
     
@@ -117,20 +129,6 @@ function enableButtons() {
     buttons.forEach(button => {
         button.disabled = false;
     });
-}
-
-function startGame() {
-    rockBtn.addEventListener('click', () =>{
-        playRound(getPlayerChoice(1), getComputerChoice());
-    })
-
-    paperBtn.addEventListener('click', ()=>{
-        playRound(getPlayerChoice(2), getComputerChoice());
-    })
-
-    scissorsBtn.addEventListener('click', ()=>{
-        playRound(getPlayerChoice(3), getComputerChoice());
-    })
 }
 
 function draw() {
@@ -202,15 +200,16 @@ function endOfRound() {
 }
 
 function resetGame() {
-    updatePlayerHealth(5);
-    updateCPUHealth(5);
+    cpuHealth = MAX_HEALTH;
+    playerHealth = MAX_HEALTH;
+
+    updatePlayerHealth(MAX_HEALTH);
+    updateCPUHealth(MAX_HEALTH);
 
     gameOverScreen.style.opacity = 0;
     setTimeout(() => {
         gameOverScreen.style.display = 'none';
     }, 2000);
-
-    startGame();
 }
 
 function playRound(playerChoice, cpuChoice) {
@@ -231,5 +230,3 @@ function playRound(playerChoice, cpuChoice) {
     }, 2000);
 
 }
-
-startGame();

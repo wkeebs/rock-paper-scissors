@@ -216,6 +216,9 @@ function resetGame() {
     updatePlayerHealth(MAX_HEALTH);
     updateCPUHealth(MAX_HEALTH);
 
+    playerIdle();
+    robotIdle();
+
     gameOverScreen.style.opacity = 0;
     setTimeout(() => {
         gameOverScreen.style.display = 'none';
@@ -288,4 +291,3 @@ function robotHurt() {
 function robotDead() {
     robotGif.src = './assets/asset-gifs/robot-dead.gif';
 }
-

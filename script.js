@@ -15,27 +15,6 @@ function getPlayerChoice(choice) {
     return choices[choice-1];
 }
 
-// function game(limit=5) {
-//     let playerCount = 0;
-//     let computerCount = 0;
-//     while (playerCount < limit && computerCount < 5) {
-//         let playerChoice = getPlayerChoice();
-//         let outcome = playRound(playerChoice, getComputerChoice());
-//         if (outcome === outcomes.CPU) {
-//             computerCount++;
-//         }
-//         else if (outcome === outcomes.PLAYER) {
-//             playerCount++;
-//         }
-//         // console.log(`PLAYER: ${playerCount} | CPU: ${computerCount}`);
-//     }
-//     if (playerCount >= limit) {
-//         alert("You win!");
-//     }
-//     else {
-//         alert("CPU wins :(");
-//     }
-// }
 
 // -----> VISUAL ELEMENTS
 function hideWelcomeScreen() {
@@ -118,7 +97,10 @@ const infoDisplay = document.querySelector('#info-display');
 const playerChoiceDisplay = document.querySelector('#player-choice-display');
 const cpuChoiceDisplay = document.querySelector('#cpu-choice-display');
 
-const gameOverScreen = document.querySelector('#game-over')
+const gameOverScreen = document.querySelector('#game-over');
+const gameOverScreenText = document.querySelector('#game-over-text')
+const resetBtn = document.querySelector('#reset-btn');
+resetBtn.addEventListener('click', resetGame);
 
 function disableButtons() {
     const buttons = document.querySelectorAll('.choice-btn');
@@ -139,15 +121,15 @@ function enableButtons() {
 
 function startGame() {
     rockBtn.addEventListener('click', () =>{
-        playRoud(getPlayerChoice(1), getComputerChoice());
+        playRound(getPlayerChoice(1), getComputerChoice());
     })
 
     paperBtn.addEventListener('click', ()=>{
-        playRoud(getPlayerChoice(2), getComputerChoice());
+        playRound(getPlayerChoice(2), getComputerChoice());
     })
 
     scissorsBtn.addEventListener('click', ()=>{
-        playRoud(getPlayerChoice(3), getComputerChoice());
+        playRound(getPlayerChoice(3), getComputerChoice());
     })
 }
 
@@ -193,6 +175,7 @@ function computeResult(playerChoice, computerChoice) {
 }
 
 function gameOverPlayer() {
+    gameOverScreenText.textContent = 'YOU WIN!';
     showGameOver();
 }
 
@@ -202,6 +185,9 @@ function gameOverCpu() {
 
 function showGameOver() {
     gameOverScreen.style.display = 'flex';
+    setTimeout(() => {
+        gameOverScreen.style.opacity = 1;
+    }, 0);
 }
 
 function endOfRound() {
@@ -215,7 +201,19 @@ function endOfRound() {
     enableButtons();
 }
 
-function playRoud(playerChoice, cpuChoice) {
+function resetGame() {
+    updatePlayerHealth(5);
+    updateCPUHealth(5);
+
+    gameOverScreen.style.opacity = 0;
+    setTimeout(() => {
+        gameOverScreen.style.display = 'none';
+    }, 2000);
+
+    startGame();
+}
+
+function playRound(playerChoice, cpuChoice) {
     disableButtons();
     const result = computeResult(playerChoice, cpuChoice);
 

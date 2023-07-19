@@ -18,11 +18,12 @@
 <div class="game-container toggle rounded">
     <div class="scoreboard rounded">
         <div id="player-score" class="scoreholder">
-            <p id="player-name">player</p>
+            <p id="player-name">you</p>
             <div class="progress-bar">
              <div id="player-health" class="progress-bar-fill"></div>
             </div>
         </div>
+        <div id="info-display" class="rounded">make your choice</div>
         <div id="cpu-score" class="scoreholder">
             <div class="progress-bar">
                 <div id="cpu-health" class="progress-bar-fill"></div>
@@ -31,19 +32,25 @@
         </div>
     </div>
     <div class="game background">
-        <img src="./assets/asset-gifs/raider-idle.gif" id="player-box" class="game-box rounded gif">
+        <div class="char-holder">
+            <div id='player-choice-display' class="choice-display"></div>
+            <img src="./assets/asset-gifs/raider-idle.gif" id="player-box" class="game-box rounded gif">    
+        </div>
         <div id="choices-box" class="rounded">
             <button id="rock-btn" class="choice-btn rounded">
-                <img src="./assets/images/rock.png" class="icon">
+                <img src="./assets/images/rock_hand.png" class="icon">
             </button>
             <button id="paper-btn" class="choice-btn rounded">
-                <img src="./assets/images/paper-airplane.png" class="icon">
+                <img src="./assets/images/paper_hand.png" class="icon">
             </button>
             <button id="scissors-btn" class="choice-btn rounded">
-                <img src="./assets/images/scissors.png" class="icon">
+                <img src="./assets/images/scissors_hand.png" class="icon">
             </button>
         </div>
-        <img src="./assets/asset-gifs/robot-idle.gif" id="cpu-box" class="game-box rounded mirrored gif">
+        <div class="char-holder">
+            <div id='cpu-choice-display' class="choice-display"></div>
+            <img src="./assets/asset-gifs/robot-idle.gif" id="cpu-box" class="game-box rounded mirrored gif">
+        </div>
     </div>
 
 </div>

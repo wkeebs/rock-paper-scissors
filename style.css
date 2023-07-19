@@ -3,6 +3,10 @@
     border-color: red;
 } */
 
+* {
+    font-family: 'VT323', monospace;
+}
+
 :root {
     --primary: #73A6AD;
     --secondary: #4EFFEF;
@@ -15,9 +19,6 @@ html {
     background-color: var(--dark);
 }
 
-button {
-    font-family: 'VT323', monospace;
-}
 
 body {
     margin: 0;
@@ -28,7 +29,6 @@ body {
 }
 
 .title-text {
-    font-family: 'VT323', monospace;
     text-transform: uppercase;
     color: var(--light);
     font-size: 24px;
@@ -74,9 +74,8 @@ body {
 }
 
 .scoreholder {
-    font-family: 'VT323', monospace;
     font-size: 12px;
-    width: 50%;
+    width: 35%;
     background-color: var(--primary);
     height: fit-content;
     justify-content: center;
@@ -100,7 +99,6 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: start;
-
 }
 
 .progress-bar {
@@ -150,22 +148,60 @@ body {
     background-color: #fcf7f85b;
     margin: 5px;
     transition: transform 0.2s;
+    z-index: 2;
 }
 
-.choice-btn:active {
-    transform: scale(0.95);
+.choice-btn:active:enabled {
+    transform: scale(0.9);
+}
+
+.choice-btn:hover {
+    background-color: darkgray;
+}
+
+#info-display {
+    font-family: 'Gothic A1', sans-serif;
+    font-weight: 550;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    background-color: darkgrey;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--light);
+    font-size: 12px;
+}
+
+.char-holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.choice-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 70px;
+    width: 20%;
+    margin: 15px;
+    /* background-color: white; */
 }
 
 .full-screen {
     position: absolute;
     width: 100%;
     height: 100%;
-    z-index: 2;
+    z-index: 99;
 }
 
 .gif {
     position: relative;
-    max-width: 20%;
+    min-width: 100%;
     max-height: 100%;
     object-fit: cover;
     padding: 2%;
@@ -173,6 +209,15 @@ body {
 
 .icon {
     height: 100%;
+}
+
+.show-image {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out; 
+}
+
+.hide-image {
+    opacity: 0;
 }
 
 .mirrored {

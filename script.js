@@ -68,13 +68,15 @@ function updateCPUHealth(value, max=5) {
     healthBarFill.style.width = percentage + '%';
 }
 
-let playerChoiceShowing = false;
-let cpuChoiceShowing = false;
+function flashImage(url, isplayer) {
+    let div;
+    if (isplayer) {
+        div = document.querySelector('#player-choice-display');
+    }
+    else {
+        div = document.querySelector('#cpu-choice-display');
+    }
 
-function flashPlayerImage(url) {
-    if (playerChoiceShowing) {return;}
-    playerChoiceShowing = true;
-    const div = document.querySelector('#player-choice-display');
     const imgElement = document.createElement('img');
     imgElement.classList.add('show-image')
     imgElement.src = url;
@@ -85,33 +87,10 @@ function flashPlayerImage(url) {
         setTimeout(() => {
             setTimeout(() => {
                 imgElement.remove();
-                playerChoiceShowing = false;
             }, 500);
             imgElement.style.opacity = 0;
-        }, 2000); // Adjust the duration (in milliseconds) to control how long the image is visible
-        imgElement.style.opacity = 1;
-    }, 1);
-}
-
-function flashCpuImage(url) {
-    if (cpuChoiceShowing) {return;}
-    cpuChoiceShowing = true;
-    const div = document.querySelector('#cpu-choice-display');
-    const imgElement = document.createElement('img');
-    imgElement.classList.add('show-image')
-    imgElement.src = url;
-    imgElement.width = 50;
-    div.appendChild(imgElement);
-
-    setTimeout(() => {
-        setTimeout(() => {
-            setTimeout(() => {
-                imgElement.remove();
-                cpuChoiceShowing = false;
-            }, 500);
-            imgElement.style.opacity = 0;
-        }, 2000); // Adjust the duration (in milliseconds) to control how long the image is visible
-        imgElement.style.opacity = 1;
+        }, 1500); // Adjust the duration (in milliseconds) to control how long the image is visible
+        imgElement.style.opacity = 0.5;
     }, 1);
 }
 
@@ -139,6 +118,8 @@ const infoDisplay = document.querySelector('#info-display');
 const playerChoiceDisplay = document.querySelector('#player-choice-display');
 const cpuChoiceDisplay = document.querySelector('#cpu-choice-display');
 
+const gameOverScreen = document.querySelector('#game-over')
+
 function disableButtons() {
     const buttons = document.querySelectorAll('.choice-btn');
     
@@ -156,28 +137,18 @@ function enableButtons() {
     });
 }
 
-let roundActive = false;
-function gameLoop() {
+function startGame() {
     rockBtn.addEventListener('click', () =>{
-        playUiRoud(getPlayerChoice(1), getComputerChoice());
+        playRoud(getPlayerChoice(1), getComputerChoice());
     })
 
     paperBtn.addEventListener('click', ()=>{
-        playUiRoud(getPlayerChoice(2), getComputerChoice());
+        playRoud(getPlayerChoice(2), getComputerChoice());
     })
 
     scissorsBtn.addEventListener('click', ()=>{
-        playUiRoud(getPlayerChoice(3), getComputerChoice());
+        playRoud(getPlayerChoice(3), getComputerChoice());
     })
-
-    if (cpuHealth == 0) {
-        infoDisplay.textContent = "GAME OVER... PLAYER WINS!";
-        return;
-    }
-    else if (playerHealth == 0) {
-        infoDisplay.textContent = "GAME OVER... CPU WINS!";
-        return;
-    }
 }
 
 function draw() {
@@ -194,17 +165,17 @@ function cpuWin() {
     infoDisplay.textContent = "CPU WINS THE ROUND!";
 }
 
-function playRound(playerChoice, computerChoice) {
+function computeResult(playerChoice, computerChoice) {
     pChoice = playerChoice.toLowerCase();
     cChoice = computerChoice.toLowerCase();
     
-    if (pChoice == "rock") {flashPlayerImage(rockUrl)}
-    else if (pChoice == "paper") {flashPlayerImage(paperUrl);}
-    else if (pChoice == "scissors") {flashPlayerImage(scissorsUrl);}
+    if (pChoice == "rock") {flashImage(rockUrl, true)}
+    else if (pChoice == "paper") {flashImage(paperUrl, true);}
+    else if (pChoice == "scissors") {flashImage(scissorsUrl, true);}
 
-    if (cChoice == "rock") {flashCpuImage(rockUrl);}
-    else if (cChoice == "paper") {flashCpuImage(paperUrl);}
-    else if (cChoice == "scissors") {flashCpuImage(scissorsUrl);}
+    if (cChoice == "rock") {flashImage(rockUrl, false);}
+    else if (cChoice == "paper") {flashImage(paperUrl, false);}
+    else if (cChoice == "scissors") {flashImage(scissorsUrl, false);}
 
     if (pChoice === cChoice) {
         return outcomes.DRAW;
@@ -221,9 +192,32 @@ function playRound(playerChoice, computerChoice) {
     }
 }
 
-function playUiRoud(playerChoice, cpuChoice) {
+function gameOverPlayer() {
+    showGameOver();
+}
+
+function gameOverCpu() {
+    showGameOver();
+}
+
+function showGameOver() {
+    gameOverScreen.style.display = 'flex';
+}
+
+function endOfRound() {
+    if (playerHealth <= 0) {
+        gameOverCpu();
+    }
+    else if (cpuHealth <= 0) {
+        gameOverPlayer();
+    }
+    infoDisplay.textContent = 'MAKE YOUR CHOICE';
+    enableButtons();
+}
+
+function playRoud(playerChoice, cpuChoice) {
     disableButtons();
-    const result = playRound(playerChoice, cpuChoice);
+    const result = computeResult(playerChoice, cpuChoice);
 
     if (result == outcomes.CPU_WIN) {
         cpuWin();
@@ -235,9 +229,9 @@ function playUiRoud(playerChoice, cpuChoice) {
         draw();
     }
     setTimeout(() => {
-        infoDisplay.textContent = 'MAKE YOUR CHOICE';
-        enableButtons();
-    }, 3000);
+        endOfRound();
+    }, 2000);
+
 }
 
-gameLoop();
+startGame();

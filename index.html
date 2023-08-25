@@ -1,76 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock-Paper-Scissors</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css" />
     <script src="./script.js" defer></script>
-    <script src="https://kit.fontawesome.com/92b6e4d127.js" crossorigin="anonymous"></script>
-</head>
-<div id="welcome" class="full-screen">
-    <div class="title-text">
-        welcome to
-    </div>
-    <div class="title-text glitch">
-        rock-paper-scissors
-    </div>
-    <button id="welcome-btn" class="main-btn">
-        enter
-    </button>
-</div>
-<div id="game-over" class="full-screen hidden">
-    <div id="game-over-text" class="title-text glitch">
-        game over...
-    </div>
-    <button id="reset-btn" class="rounded main-btn">
-        restart
-    </button>
-</div>
-<div id="rules-display">
-    <div class="title-text glitch">
-        rock > paper > scissors
-    </div>
-</div>
-<div class="game-container toggle rounded">
+    <script
+      src="https://kit.fontawesome.com/92b6e4d127.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <div id="welcome" class="full-screen">
+    <div class="title-text">welcome to</div>
+    <div class="title-text glitch">rock-paper-scissors</div>
+    <button id="welcome-btn" class="main-btn">enter</button>
+  </div>
+  <div id="game-over" class="full-screen hidden">
+    <div id="game-over-text" class="title-text glitch">game over...</div>
+    <button id="reset-btn" class="rounded main-btn">restart</button>
+  </div>
+  <div id="rules-display">
+    <div class="title-text glitch">rock > paper > scissors</div>
+  </div>
+  <div class="game-container toggle rounded">
     <div class="scoreboard rounded">
-        <div id="player-score" class="scoreholder">
-            <p id="player-name">you</p>
-            <div class="progress-bar">
-            <div id="player-health" class="progress-bar-fill"></div>
-            </div>
+      <div id="player-score" class="scoreholder">
+        <p id="player-name">you</p>
+        <div class="progress-bar">
+          <div id="player-health" class="progress-bar-fill"></div>
         </div>
-        <div id="info-display" class="rounded">make your choice</div>
-        <div id="cpu-score" class="scoreholder">
-            <div class="progress-bar">
-                <div id="cpu-health" class="progress-bar-fill"></div>
-            </div>
-            <p id="cpu-name">cpu</p>
+      </div>
+      <div id="info-display" class="rounded">make your choice</div>
+      <div id="cpu-score" class="scoreholder">
+        <div class="progress-bar">
+          <div id="cpu-health" class="progress-bar-fill"></div>
         </div>
+        <p id="cpu-name">cpu</p>
+      </div>
     </div>
     <div class="game background">
-        <div class="char-holder">
-            <div id='player-choice-display' class="choice-display"></div>
-            <img src="./assets/asset-gifs/raider-idle.gif" id="player-box" class="game-box rounded gif">    
-        </div>
-        <div id="choices-box" class="rounded">
-            <button id="rock-btn" class="choice-btn rounded">
-                <i class="fa-solid fa-hand-fist fa-2xl"></i>            
-            </button>
-            <button id="paper-btn" class="choice-btn rounded">
-                <i class="fa-solid fa-hand fa-2xl"></i>
-            </button>
-            <button id="scissors-btn" class="choice-btn rounded">
-                <i class="fa-solid fa-hand-scissors fa-2xl"></i>
-            </button>
-        </div>
-        <div class="char-holder">
-            <div id='cpu-choice-display' class="choice-display mirrored-choice-display"></div>
-            <img src="./assets/asset-gifs/robot-idle.gif" id="cpu-box" class="game-box rounded mirrored gif">
-        </div>
+      <div class="char-holder">
+        <div id="player-choice-display" class="choice-display"></div>
+        <img
+          src="./assets/asset-gifs/raider-idle.gif"
+          id="player-box"
+          class="game-box rounded gif"
+        />
+      </div>
+      <div id="choices-box" class="rounded">
+        <button id="rock-btn" class="choice-btn rounded">
+          <i class="fa-solid fa-hand-fist fa-2xl"></i>
+        </button>
+        <button id="paper-btn" class="choice-btn rounded">
+          <i class="fa-solid fa-hand fa-2xl"></i>
+        </button>
+        <button id="scissors-btn" class="choice-btn rounded">
+          <i class="fa-solid fa-hand-scissors fa-2xl"></i>
+        </button>
+      </div>
+      <div class="char-holder">
+        <div
+          id="cpu-choice-display"
+          class="choice-display mirrored-choice-display"
+        ></div>
+        <img
+          src="./assets/asset-gifs/robot-idle.gif"
+          id="cpu-box"
+          class="game-box rounded mirrored gif"
+        />
+      </div>
     </div>
-</div>
-<footer>
-    Made by ~<a target="_blank" href="https://github.com/wkeebs/rock-paper-scissors"><i class="fa-brands fa-github"></i> Will Keeble</a>~ for <a target="_blank" href="https://www.theodinproject.com/">The Odin Project</a>
-</footer>
+  </div>
+  <footer>
+    Made by
+    <a target="_blank" href="https://github.com/wkeebs/rock-paper-scissors"
+      ><i class="fa-brands fa-github"></i> Will Keeble</a>
+  </footer>
 </html>

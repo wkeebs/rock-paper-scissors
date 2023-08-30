@@ -45,7 +45,8 @@ footer {
 }
 
 a {
-    color: var(--light);
+    color: var(--accent);
+    text-decoration: none;
 }
 
 .rounded {
